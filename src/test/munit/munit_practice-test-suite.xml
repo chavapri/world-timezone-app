@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="munit_practice-test-suite.xml" />
+	<munit:test name="munit_practice-test-suite-munit_practiceFlowTest" doc:id="e0830fb4-0efc-4c37-9d0e-e019880b9c14" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="808144ba-cb1e-4ee0-ac81-71a4f4bebc0b" name="munit_practice-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to munit_practiceFlow" doc:id="ad8bc906-8fd9-40ab-8265-8cbb902dd71b" name="munit_practiceFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="ac859134-6c58-4ac5-b188-8846045d9b31" expression="#[payload]" is="#[MunitTools::notNullValue()]" message="payload is null"/>
+		</munit:validation>
+	</munit:test>
+	<flow name="munit_practice-test-suiteFlow" doc:id="6fc93a3f-6689-4c24-8d0c-1ea7e5367a8b" >
+		<munit:set-event doc:name="Set Event" doc:id="269c3527-4d6c-4aac-bf16-3bc1e2091941" >
+			<munit:attributes value="#[{uriParams:{region:'Asia',city:'Kolkata'}}]" />
+		</munit:set-event>
+	</flow>
+	<munit:test name="munit_practice-test-suite-munit_practiceFlowTest1" doc:id="b81b9053-3d4b-4663-b956-11214d4bc3f6" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="0779df23-053f-42cc-a191-95ce1c74c914" name="munit_practice-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to munit_practiceFlow" doc:id="55f32a71-1e5f-4df8-9f7d-56b4f2970919" name="munit_practiceFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="1d28ec26-03da-4341-966c-d4efda5c54ea" expression="#[payload]" is="#[MunitTools::withMediaType('application/json')]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="munit_practice-test-suite-munit_practiceFlowTest2" doc:id="9e1763b5-2e0f-4e5c-8fe8-a8ce0b0bf90d" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="e9635c5e-4111-442b-990f-eca862ac44fc" name="munit_practice-test-suiteFlow"/>
+			<flow-ref doc:name="Flow-ref to munit_practiceFlow" doc:id="26a9e025-0d70-41ae-87ed-b60f99520c03" name="munit_practiceFlow"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
